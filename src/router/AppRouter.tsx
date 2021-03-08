@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { App } from '../components/App';
+import Overview from '../components/Overview';
 
 const AppRouter = () => {
 	return (
@@ -10,7 +10,7 @@ const AppRouter = () => {
 					<Route
 						path="/"
 						exact={true}
-						render={App}
+						render={() => <Overview/>}
 					/>
 					<Route component={() => <div>Page not found</div>}/>
 				</Switch>
