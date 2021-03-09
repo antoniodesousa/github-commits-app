@@ -1,20 +1,17 @@
-import {SET_COMMITS, ADD_COMMITS} from '../utils/constants';
+import { SET_COMMITS } from '../utils/constants';
+import { TCommit } from '../utils/interfaces';
+import { TAction } from '../reducers/commits';
 import { get } from "./api";
 
-export const setCommits = (commits: any) => ({
+export const setCommits = (commits: TCommit[]) => ({
 	type: SET_COMMITS,
 	commits
 });
 
-export const addCommits = (commits: any) => ({
-	type: ADD_COMMITS,
-	commits
-});
-
 export const initiateGetCommits = () => {
-	return async (dispatch: (arg0: { type: string; commits?: any; }) => void) => {
+	return async (dispatch: (action: TAction) => void): Promise<void> => {
 		try {
-			let commits = await get('https://api.github.com/repos/facebook/react/commits');
+			let commits = await get('commits');
 			return dispatch(setCommits(commits));
 		} catch (error) {
 			console.log('error', error);
