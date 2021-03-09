@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Table } from '../library/table/Table';
 import { TCommit } from '../utils/interfaces';
 
@@ -15,18 +16,21 @@ const ListCommits = (props: IListCommits): JSX.Element => {
 			dataIndex: 'message'
 		},
 		{
-			title: 'Timestamp',
-			dataIndex: 'timestamp',
+			title: 'Date',
+			dataIndex: 'date',
 		},
 	];
 
-	const data = source.map((commit) => {
-		return {
-			key: commit.sha,
-			message: commit.commit.message,
-			timestamp: commit.commit.author.date
-		};
-	});
+	const data = source
+		.map((commit) => {
+			return {
+				key: commit.sha,
+				message: commit.commit.message,
+				date: moment(commit.commit.author.date).format('MMMM Do YYYY, H:mm:ss'),
+				timestamp: Date.parse(commit.commit.author.date)
+			};
+		})
+		.sort((a, b) => b.timestamp - a.timestamp);
 
 	return (
 		<Table columns={columns}
