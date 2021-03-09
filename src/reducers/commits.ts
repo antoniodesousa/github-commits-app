@@ -1,12 +1,16 @@
-import { SET_COMMITS, ADD_COMMITS } from '../utils/constants';
+import { SET_COMMITS } from '../utils/constants';
+import { TCommit } from "../utils/interfaces";
 
-const commitsReducer = (state = [], action: { type?: any; commits?: any; }) => {
+export type TAction = {
+	type?: string;
+	commits?: TCommit[];
+}
+
+const commitsReducer = (state = [], action: TAction) => {
 	const {type, commits} = action;
 	switch (type) {
 		case SET_COMMITS:
 			return commits;
-		case ADD_COMMITS:
-			return [...state, ...commits];
 		default:
 			return state;
 	}
