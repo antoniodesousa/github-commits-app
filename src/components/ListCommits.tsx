@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Table } from '../library/table/Table';
 import { TCommit } from '../utils/interfaces';
+import { useHistory } from 'react-router-dom';
 
 export interface IListCommits {
 	source: TCommit[];
@@ -9,6 +10,7 @@ export interface IListCommits {
 
 const ListCommits = (props: IListCommits): JSX.Element => {
 	const {source} = props;
+	const history = useHistory();
 
 	const columns = [
 		{
@@ -35,13 +37,13 @@ const ListCommits = (props: IListCommits): JSX.Element => {
 	return (
 		<Table columns={columns}
 		       dataSource={data}
-		       onRow={(record, rowIndex) => {
+		       onRow={(record) => {
 			       return {
-				       onClick: () => console.log(rowIndex, record)
+				       onClick: () => history.push(`/details/${record.key}`)
 			       };
 		       }}
 		       pagination={{pageSize: 8}}
-		       scroll={{y: 'calc(100vh - 17em)'}}
+		       scroll={{y: 'calc(100vh - 14em)'}}
 		       bordered={true}/>
 	);
 };

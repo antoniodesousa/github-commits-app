@@ -17,7 +17,7 @@ const Overview = (props: IOverview): JSX.Element => {
 
 	return (
 		<div className="overview">
-			<h1>List of commits:</h1>
+			<h2>List of commits:</h2>
 			{commits && <ListCommits source={commits}/>}
 		</div>
 	);

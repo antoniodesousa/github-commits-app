@@ -1,0 +1,16 @@
+.details {
+	display: flex;
+	flex-flow: column nowrap;
+	min-height: 100%;
+	padding: 0 30px;
+	overflow: auto;
+
+	.details-box {
+		flex: 1;
+	}
+
+	.footer {
+		margin: 15px 0;
+		text-align: right;
+	}
+}
