@@ -1,22 +1,29 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, DispatchProp } from 'react-redux';
 import { initiateGetCommits } from '../services/resources';
+import { TCommit } from '../utils/interfaces';
+import { ListCommits } from './ListCommits';
 
-const Overview = (props: any) => {
+export interface IOverview extends DispatchProp<any> {
+	commits: TCommit[];
+}
+
+const Overview = (props: IOverview): JSX.Element => {
 	const {dispatch, commits} = props;
 
 	useEffect(() => {
-		dispatch(initiateGetCommits());
+		void dispatch(initiateGetCommits());
 	}, [dispatch]);
 
 	return (
 		<div className="overview">
-			{commits ? commits.length : []}
+			<h1>List of commits:</h1>
+			{commits && <ListCommits source={commits}/>}
 		</div>
 	);
 };
 
-const mapStateToProps = (state: { commits: any; }) => {
+const mapStateToProps = (state: { commits: TCommit[]; }) => {
 	return {
 		commits: state.commits
 	};

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Overview from '../components/Overview';
 
-const AppRouter = () => {
+const AppRouter = (): JSX.Element => {
 	return (
 		<BrowserRouter>
 			<div className="main">
