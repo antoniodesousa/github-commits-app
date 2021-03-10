@@ -39,11 +39,13 @@ const Overview = (props: IOverview): JSX.Element => {
 	};
 
 	useEffect(() => {
-		setLoading(true);
-		dispatch(getCommits()).then(() => {
-			setLoading(false);
-		});
-	}, [dispatch]);
+		if (commits.length === 0) {
+			setLoading(true);
+			dispatch(getCommits()).then(() => {
+				setLoading(false);
+			});
+		}
+	}, [dispatch, commits]);
 
 	return (
 		<div className="overview">
