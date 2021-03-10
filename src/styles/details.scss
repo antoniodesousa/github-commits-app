@@ -6,7 +6,15 @@
 	overflow: auto;
 
 	.details-box {
+		display: flex;
 		flex: 1;
+	}
+
+	.loading {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.footer {

@@ -1,25 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { connect, DispatchProp } from 'react-redux';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { TCommit } from '../utils/interfaces';
-import { initiateGetCommit } from '../services/resources';
+import { getCommit } from '../services/resources';
 import { Descriptions } from '../library/descriptions/Descriptions';
 import { Button } from '../library/button/Button';
+import { Spin } from '../library/spin/Spin';
 
-export interface IDetails extends DispatchProp<any> {
+export interface IDetails {
+	dispatch: (fn: any) => Promise<void>;
 	commits: TCommit[];
 	commit: TCommit;
 }
 
 const Details = (props: IDetails): JSX.Element => {
 	const {dispatch, commits, commit} = props;
+	const [loading, setLoading] = useState(false);
 	const {sha} = useParams() as { sha: string; };
 	const history = useHistory();
 
 	useEffect(() => {
-		void dispatch(initiateGetCommit(commits, sha));
+		setLoading(true);
+		dispatch(getCommit(commits, sha)).then(() => {
+			setLoading(false);
+		});
 	}, [dispatch, commits, sha]);
 
 	return (
@@ -34,6 +40,11 @@ const Details = (props: IDetails): JSX.Element => {
 					</Descriptions.Item>
 					<Descriptions.Item label="Message" span={3}>{commit.commit.message}</Descriptions.Item>
 				</Descriptions>
+			)}
+			{loading && (
+				<div className={'loading'}>
+					<Spin/>
+				</div>
 			)}
 			<div className={'footer'}>
 				<Button type={'primary'} onClick={() => history.push('/')}>Back</Button>
