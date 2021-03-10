@@ -2,4 +2,12 @@
 	min-height: 100%;
 	padding: 0 30px;
 	overflow: auto;
+
+	.date-range {
+		margin-bottom: 10px;
+
+		.ant-picker {
+			margin-right: 10px;
+		}
+	}
 }
