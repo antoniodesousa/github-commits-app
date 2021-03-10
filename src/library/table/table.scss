@@ -1,5 +1,6 @@
 @import "~antd/lib/table/style/index.css";
 @import "~antd/lib/pagination/style/index.css";
+@import "~antd/lib/select/style/index.css";
 
 .ant-table {
 	&.ant-table-bordered > .ant-table-container {
@@ -11,10 +12,18 @@
 			table {
 				overflow: hidden;
 
-				.ant-table-tbody > tr > td {
-					text-overflow: ellipsis;
-					white-space: nowrap;
-					overflow: hidden;
+				.ant-table-tbody {
+					> tr > td {
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+					}
+
+					> tr:last-child {
+						> td {
+							border-bottom: 0;
+						}
+					}
 				}
 			}
 		}
