@@ -15,12 +15,14 @@ const ListCommits = (props: IListCommits): JSX.Element => {
 	const columns = [
 		{
 			title: 'Message',
-			dataIndex: 'message'
+			dataIndex: 'message',
+			width: '70%'
 		},
 		{
 			title: 'Date',
 			dataIndex: 'date',
-		},
+			width: 240
+		}
 	];
 
 	const data = source
@@ -37,13 +39,9 @@ const ListCommits = (props: IListCommits): JSX.Element => {
 	return (
 		<Table columns={columns}
 		       dataSource={data}
-		       onRow={(record) => {
-			       return {
-				       onClick: () => history.push(`/details/${record.key}`)
-			       };
-		       }}
+		       onRow={(record) => ({onClick: () => history.push(`/details/${record.key}`)})}
 		       pagination={{pageSize: 8}}
-		       scroll={{y: 'calc(100vh - 14em)'}}
+		       scroll={{y: 'calc(100vh - 216px)'}}
 		       bordered={true}/>
 	);
 };
