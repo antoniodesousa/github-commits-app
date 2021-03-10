@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Table } from '../library/table/Table';
 import { TCommit } from '../utils/interfaces';
+import { DATE_FORMAT } from '../utils/constants';
 import { useHistory } from 'react-router-dom';
 
 export interface IListCommits {
@@ -9,7 +10,7 @@ export interface IListCommits {
 	loading: boolean;
 }
 
-const ListCommits = (props: IListCommits): JSX.Element => {
+const CommitsList = (props: IListCommits): JSX.Element => {
 	const {source, loading} = props;
 	const history = useHistory();
 
@@ -31,7 +32,7 @@ const ListCommits = (props: IListCommits): JSX.Element => {
 			return {
 				key: commit.sha,
 				message: commit.commit.message,
-				date: moment(commit.commit.author.date).format('MMMM Do YYYY, H:mm:ss'),
+				date: moment(commit.commit.author.date).format(DATE_FORMAT),
 				timestamp: Date.parse(commit.commit.author.date)
 			};
 		})
@@ -52,4 +53,4 @@ const ListCommits = (props: IListCommits): JSX.Element => {
 	);
 };
 
-export { ListCommits };
+export { CommitsList };

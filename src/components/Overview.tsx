@@ -3,7 +3,7 @@ import moment, { Moment } from 'moment';
 import { connect } from 'react-redux';
 import { getCommits } from '../services/resources';
 import { TCommit } from '../utils/interfaces';
-import { ListCommits } from './ListCommits';
+import { CommitsList } from './CommitsList';
 import { RangePicker } from '../library/date-picker/DatePicker';
 import { Button } from '../library/button/Button';
 
@@ -58,7 +58,7 @@ const Overview = (props: IOverview): JSX.Element => {
 				        onClick={handleSearch}
 				        disabled={!dateRange.length}>Search</Button>
 			</div>
-			{commits && <ListCommits source={commits} loading={loading}/>}
+			{commits && <CommitsList source={commits} loading={loading}/>}
 		</div>
 	);
 };
