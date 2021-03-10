@@ -4,7 +4,11 @@ import { TCommit } from '../utils/interfaces';
 
 const requestConfig = {
 	headers: {
+		'Accept': 'application/vnd.github.v3+json',
 		'Authorization': `Bearer ${REACT_APP_ACCESS_TOKEN}`
+	},
+	params: {
+		'per_page': 100
 	}
 };
 

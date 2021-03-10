@@ -6,10 +6,11 @@ import { useHistory } from 'react-router-dom';
 
 export interface IListCommits {
 	source: TCommit[];
+	loading: boolean;
 }
 
 const ListCommits = (props: IListCommits): JSX.Element => {
-	const {source} = props;
+	const {source, loading} = props;
 	const history = useHistory();
 
 	const columns = [
@@ -40,8 +41,13 @@ const ListCommits = (props: IListCommits): JSX.Element => {
 		<Table columns={columns}
 		       dataSource={data}
 		       onRow={(record) => ({onClick: () => history.push(`/details/${record.key}`)})}
-		       pagination={{pageSize: 8}}
+		       pagination={{
+			       hideOnSinglePage: true,
+			       defaultPageSize: 8,
+			       pageSizeOptions: ['8', '16', '32', '64']
+		       }}
 		       scroll={{y: 'calc(100vh - 216px)'}}
+		       loading={loading}
 		       bordered={true}/>
 	);
 };

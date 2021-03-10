@@ -1,6 +1,7 @@
 import { SET_COMMITS, SET_DETAILS } from '../utils/constants';
 import { TCommit } from '../utils/interfaces';
 import { TCommitsAction } from '../reducers/commits';
+import { AxiosRequestConfig } from 'axios';
 import { get } from "./api";
 
 export const setCommits = (commits: TCommit[]) => ({
@@ -13,10 +14,10 @@ export const setCommit = (commit: TCommit[]) => ({
 	commit
 });
 
-export const initiateGetCommits = () => {
+export const getCommits = (config?: AxiosRequestConfig) => {
 	return async (dispatch: (action: TCommitsAction) => void): Promise<void> => {
 		try {
-			const commits = await get('commits');
+			const commits = await get('commits', config);
 			return dispatch(setCommits(commits));
 		} catch (error) {
 			console.log('error', error);
@@ -24,7 +25,7 @@ export const initiateGetCommits = () => {
 	};
 };
 
-export const initiateGetCommit = (commits: TCommit[], sha: string) => {
+export const getCommit = (commits: TCommit[], sha: string) => {
 	return async (dispatch: (action: TCommitsAction) => void): Promise<void> => {
 		try {
 			let commit: any;
