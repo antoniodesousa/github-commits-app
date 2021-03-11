@@ -37,7 +37,7 @@ const {author, message} = commit.commit;
 
 describe('CommitDetails component', () => {
 	test('should render correctly', () => {
-		render(<CommitDetails commit={commit}/>);
+		render(<CommitDetails source={commit}/>);
 		const details = screen.getByTestId(/details/);
 		expect(details).toBeInTheDocument();
 		expect(details).toHaveClass('details-box');
@@ -46,28 +46,28 @@ describe('CommitDetails component', () => {
 	});
 
 	test('should render author name', () => {
-		render(<CommitDetails commit={commit}/>);
+		render(<CommitDetails source={commit}/>);
 		const details = screen.getByText(author.name);
 		expect(details).toBeInTheDocument();
 		expect(details).toHaveAttribute('label', 'Author');
 	});
 
 	test('should render author email', () => {
-		render(<CommitDetails commit={commit}/>);
+		render(<CommitDetails source={commit}/>);
 		const details = screen.getByText(author.email);
 		expect(details).toBeInTheDocument();
 		expect(details).toHaveAttribute('label', 'Email');
 	});
 
 	test('should render commit date', () => {
-		render(<CommitDetails commit={commit}/>);
+		render(<CommitDetails source={commit}/>);
 		const details = screen.getByText(author.date);
 		expect(details).toBeInTheDocument();
 		expect(details).toHaveAttribute('label', 'Date');
 	});
 
 	test('should render commit message', () => {
-		render(<CommitDetails commit={commit}/>);
+		render(<CommitDetails source={commit}/>);
 		const details = screen.getByText(message);
 		expect(details).toBeInTheDocument();
 		expect(details).toHaveAttribute('label', 'Message');

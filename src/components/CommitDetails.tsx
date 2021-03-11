@@ -5,12 +5,12 @@ import { Descriptions } from '../library/descriptions/Descriptions';
 import { DATE_FORMAT } from '../utils/constants';
 
 export interface ICommitDetails {
-	commit: TCommit;
+	source: TCommit;
 }
 
 const CommitDetails = (props: ICommitDetails): JSX.Element => {
-	const {commit} = props;
-	const {author, message} = commit.commit;
+	const {source} = props;
+	const {author, message} = source.commit;
 
 	return (
 		<Descriptions className={'details-box'} layout="vertical" bordered>

@@ -30,7 +30,7 @@ const Details = (props: IDetails): JSX.Element => {
 	return (
 		<div className="details">
 			<h2>Commit details:</h2>
-			{commit?.commit && <CommitDetails commit={commit}/>}
+			{commit?.commit && <CommitDetails source={commit}/>}
 			{loading && (
 				<div className={'loading'}>
 					<Spin/>
