@@ -33,7 +33,7 @@ const Overview = (props: IOverview): JSX.Element => {
 		};
 
 		setLoading(true);
-		void dispatch(getCommits(config)).then(() => {
+		dispatch(getCommits(config)).then(() => {
 			setLoading(false);
 		});
 	};
